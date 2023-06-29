@@ -9,11 +9,18 @@ const App = () => {
         .then(cleanedData => {
             setQuote(cleanedData.sentence);
             setAuthor(cleanedData.character.name)
+            console.log('new click')
         });
     };
 
     React.useEffect(() => {
-        handleClick(new Event('click'));
+        fetch('https://api.gameofthronesquotes.xyz/v1/random')
+        .then(data=>data.json())
+        .then(cleanedData => {
+            setQuote(cleanedData.sentence);
+            setAuthor(cleanedData.character.name)
+            console.log('rendered')
+        });
     }, []);
  
     return (
